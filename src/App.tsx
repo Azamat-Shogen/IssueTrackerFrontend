@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Navigate, Route } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { isAuth } from './utils/auth';
+import Navbar from './components/navbar/Navbar';
+import Home from './components/home/Home';
+import Login from './components/login/Login';
+import Registration from './components/registration/Registration';
+import Dashboard from './components/dashboard/Dashboard';
 
-function App() {
+
+const  App: React.FC = () => {
+
+const isLoggedIn:boolean = false // isAuth();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Router>
+            <Navbar />
+            <Routes>
+                {/* public routes */}
+                <Route path='/' element={<Home />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Registration />} />
+                 {/* private routes */}
+                 <Route path='/dashboard' 
+                 element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
+                 {/* Catch all routes */}
+                <Route path='*' element={<h1>404 - Page Not Found</h1>} />
+            </Routes>
+        </Router>
     </div>
   );
 }
