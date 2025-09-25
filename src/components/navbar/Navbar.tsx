@@ -1,8 +1,19 @@
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 
+
 const Navbar: React.FC = () => {
-    const isLoggedIn = false;
+    const auth = useAuth();
+    const isLoggedIn = auth?.isAuth ?? false;
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        auth?.logout();
+        navigate("/login", { replace: true });
+        
+    };
 
     return (
         <nav className='navbar'>
@@ -19,11 +30,11 @@ const Navbar: React.FC = () => {
                         Dashboard
                       </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                       <NavLink to="/logout" className={({ isActive }) => isActive ? "active-link" : undefined}>
                         Logout
                       </NavLink>
-                    </li>
+                    </li> */}
                    </>
                 ) : (
                    <>
@@ -47,7 +58,9 @@ const Navbar: React.FC = () => {
             </ul>
             {isLoggedIn && (
                 <div className='logout-container'>
-                    <button className='btn btn-secondary'>Logout</button>
+                    <button className='btn btn-secondary'
+                    onClick={handleLogout}
+                    >Logout</button>
                 </div>
             )}
         </nav>
