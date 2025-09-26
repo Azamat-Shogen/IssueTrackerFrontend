@@ -6,7 +6,6 @@ import { getToken, getUser } from '../utils/auth';
 const apiUrl = "http://localhost:8080/api"
 
 
-
 export const getIssues = async () => {
 
     const user = getUser();
@@ -30,6 +29,5 @@ export const getIssues = async () => {
         console.log(error);
         return [];
     }
-
    
 }

@@ -8,6 +8,7 @@ import Login from './components/login/Login';
 import Registration from './components/registration/Registration';
 import Dashboard from './components/dashboard/Dashboard';
 import { useAuth } from './context/AuthContext';
+import Footer from './components/footer/Footer';
 
 
 const  App: React.FC = () => {
@@ -19,21 +20,29 @@ console.log('auth is: ', auth?.isAuth)
 const isLoggedIn:boolean = auth?.isAuth ?? false;
 
   return (
-    <div className="App">
+    <div className="App d-flex flex-column min-vh-100">
         <Router>
             <Navbar />
+            {/* Main content grows to fill available space */}
+            <div className="flex-grow-1">
             <Routes>
                 {/* public routes */}
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Registration />} />
-                 {/* private routes */}
-                 <Route path='/dashboard' 
-                 element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
-                 {/* Catch all routes */}
-                <Route path='*' element={<h1>404 - Page Not Found</h1>} />
+                
+                {/* private routes */}
+                <Route
+                path='/dashboard'
+                element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
+                />
+
+                {/* Catch-all */}
+                <Route path='*' element={<h1 className="text-center mt-5">404 - Page Not Found</h1>} />
             </Routes>
+            </div>
         </Router>
+        <Footer />
     </div>
   );
 }
