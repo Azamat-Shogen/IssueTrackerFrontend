@@ -30,11 +30,6 @@ const Navbar: React.FC = () => {
                         Dashboard
                       </NavLink>
                     </li>
-                    {/* <li>
-                      <NavLink to="/logout" className={({ isActive }) => isActive ? "active-link" : undefined}>
-                        Logout
-                      </NavLink>
-                    </li> */}
                    </>
                 ) : (
                    <>
