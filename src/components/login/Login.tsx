@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { login } from '../../api/authApi'
 import { setToken } from '../../utils/auth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IUser, useAuth } from '../../context/AuthContext'
 import { jwtDecode } from 'jwt-decode'
 import AuthCard from '../shared/AuthCard'
@@ -78,6 +78,14 @@ const Login:React.FC = () => {
                     <button type="submit" className="btn btn-primary">Login</button>
                 </div>
             </form>
+            <div className="mt-3 text-center">
+            <small>
+                Don't have an account?{' '}
+                <Link to="/register" className="text-decoration-none">
+                  Register
+                </Link>
+            </small>
+            </div>
        </AuthCard>
   )
 }

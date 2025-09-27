@@ -9,6 +9,7 @@ import Registration from './components/registration/Registration';
 import Dashboard from './components/dashboard/Dashboard';
 import { useAuth } from './context/AuthContext';
 import Footer from './components/footer/Footer';
+import IssueDeails from './components/issue-details/IssueDeails';
 
 
 const  App: React.FC = () => {
@@ -36,7 +37,7 @@ const isLoggedIn:boolean = auth?.isAuth ?? false;
                 path='/dashboard'
                 element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
                 />
-
+                <Route path='/issues/:issueId' element={<IssueDeails />}/>
                 {/* Catch-all */}
                 <Route path='*' element={<h1 className="text-center mt-5">404 - Page Not Found</h1>} />
             </Routes>
