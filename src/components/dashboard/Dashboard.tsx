@@ -2,16 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { getIssues } from "../../api/issuesApi";
+import { Issue } from "../../types";
 
-type Issue = {
-  id: number;
-  title: string;
-  description: string;
-  status: "PENDING" | "RESOLVED";
-  createdAt: string;
-  updatedAt: string;
-  reportedByUsername: string;
-};
 
 function Dashboard() {
   const [issues, setIssues] = useState<Issue[]>([]);

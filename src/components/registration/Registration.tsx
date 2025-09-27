@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AuthCard from '../shared/AuthCard';
 import { register } from '../../api/authApi';
@@ -73,6 +73,14 @@ const Registration: React.FC = () => {
                     <button type="submit" className="btn btn-success">Register</button>
                 </div>
             </form>
+            <div className="mt-3 text-center">
+            <small>
+                Already have an account?{' '}
+                <Link to="/login" className="text-decoration-none">
+                  Login
+                </Link>
+            </small>
+            </div>
         </AuthCard>
     );
 };
