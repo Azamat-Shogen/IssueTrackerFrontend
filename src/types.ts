@@ -10,6 +10,11 @@ export type Issue = {
   reportedByUsername: string;
 };
 
+export type IssueCreate = {
+    title: string
+    description: string;
+}
+
 export type UserRole = "USER" | "ADMIN"
 
 export interface User {

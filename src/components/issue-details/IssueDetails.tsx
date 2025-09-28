@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Issue, UserRole } from '../../types';
 import { useAuth } from '../../context/AuthContext';
 import { getIssueById } from '../../api/issuesApi';
+import { Link } from 'react-router-dom';
 
 function IssueDetails() {
   const [issue, setIssue] = useState<Issue | null>(null);
@@ -92,14 +93,31 @@ function IssueDetails() {
             )}
           </div>
 
-          {role === 'ADMIN' && (
-            <div className="card-footer d-flex justify-content-end gap-2">
-              <button className="btn btn-danger btn-sm">Delete</button>
-              <button className="btn btn-outline-secondary btn-sm">
-                Change Status
-              </button>
+           <div className="card-footer d-flex justify-content-end gap-2">
+              {role === 'ADMIN' ? (
+                <>
+                <button className="btn btn-danger btn-sm">Delete</button>
+                <button className="btn btn-outline-secondary btn-sm">
+                    Change Status
+                </button>
+                <Link
+                    to="/dashboard"
+                    className="btn btn-sm btn-outline-primary">
+                    Dashboard
+                </Link>
+               </>
+
+            ): <>
+                <Link
+                    to="/dashboard"
+                    className="btn btn-sm btn-outline-primary">
+                    Dashboard
+                </Link>
+              </>
+            }
             </div>
-          )}
+
+          
         </div>
       )}
     </div>
