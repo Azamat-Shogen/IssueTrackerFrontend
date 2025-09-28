@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { getIssues } from "../../api/issuesApi";
 import { Issue } from "../../types";
+import "./dashboard.css";
 
 
 function Dashboard() {
@@ -36,7 +37,7 @@ function Dashboard() {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>Dashboard</h1>
         {role === "USER" && (
-            <Link to="/create-issue" className="btn btn-primary">
+            <Link to="/create" className="btn btn-primary">
           + Create Issue
         </Link>
         )}
@@ -46,14 +47,21 @@ function Dashboard() {
       {auth?.user ? (
         <>
           {/* User Info */}
-          <div className="card p-3 mb-4 shadow-sm">
-            <h4>
-              Welcome, <strong>{username}</strong>!
+         <div
+            className={`card p-4 mb-4 shadow-sm ${
+                role === "ADMIN" ? "bg-dark text-white" : "bg-light"
+            }`}
+            >
+            <h4 className="mb-2">
+                👋 Welcome, <strong>{username}</strong>!
             </h4>
-            <p>
-              <strong>Role:</strong> {role}
+            <p className="mb-0">
+                <strong>Role:</strong>{" "}
+                <span className={`badge ${role === "ADMIN" ? "bg-danger" : "bg-primary"}`}>
+                {role}
+                </span>
             </p>
-          </div>
+        </div>
 
           {/* Loading / Error / No Issues */}
           {loading && <p>Loading issues...</p>}
@@ -62,9 +70,11 @@ function Dashboard() {
 
           {/* Issues Table */}
           {!loading && issues.length > 0 && (
-            <div className="table-responsive">
-              <table className="table table-striped table-hover shadow-sm">
-                <thead className="table-dark">
+            <div className="table-responsive border rounded"
+             style={{ maxHeight: '400px', overflowY: 'auto'}}
+            >
+              <table className="table table-striped table-hover shadow-sm mb-0">
+                <thead className="table-dark sticky-header">
                   <tr>
                     <th>Title</th>
                     <th>Status</th>

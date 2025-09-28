@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const apiUrl = process.env.REACT_SPRING_BOOT_API as string;
-const apiUrl = "http://localhost:8080/api"
+const API_URL = process.env.REACT_APP_SPRING_BOOT_API;
+
 
 export interface IAuthRequest {
     username: string;
@@ -14,7 +14,7 @@ export interface IAuthResponse {
 
 export const login = async (credentials: IAuthRequest): Promise<IAuthResponse> => {
     try {
-        const response = await axios.post<IAuthResponse>(`${apiUrl}/auth/login`, credentials);
+        const response = await axios.post<IAuthResponse>(`${API_URL}/auth/login`, credentials);
         return response.data;
     } catch (error: any) {
         
@@ -24,7 +24,7 @@ export const login = async (credentials: IAuthRequest): Promise<IAuthResponse> =
 
 export const register = async (credentials: IAuthRequest) => {
     try {
-        const response = await axios.post(`${apiUrl}/auth/register`, credentials);
+        const response = await axios.post(`${API_URL}/auth/register`, credentials);
         return response.data;
     } catch (err: any) {
         throw new Error(err.response.data.error || "Registration Failed")
