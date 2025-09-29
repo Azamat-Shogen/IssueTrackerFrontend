@@ -16,6 +16,7 @@ export type IssueCreate = {
 }
 
 export type UserRole = "USER" | "ADMIN"
+export type IssueStatus = "PENDING" | "RESOLVED"
 
 export interface User {
   id: number;
