@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getToken, getUser } from '../utils/auth';
-import { Issue, IssueCreate } from '../types';
+import { Issue, IssueCreate, IssueStatus } from '../types';
 
 
 const API_URL = process.env.REACT_APP_SPRING_BOOT_API;
@@ -76,4 +76,46 @@ export const createIssue = async (issueData: IssueCreate): Promise<Issue | null>
         return null;
     }
 
+}
+
+export const updateIssueStatus = async (id: string, status: IssueStatus): Promise<Issue | null> => {
+    const token = getToken();
+    const url = `${API_URL}/issues/admin/${id}`;
+
+    try {
+        const response = await axios.put<Issue>(url, { status }, 
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        return response.data;
+
+    } catch (err) {
+        console.error('Failed to update issue:', err);
+        return null;
+    }
+}
+
+export const deleteIssue = async (id: string): Promise<string> => {
+    const token = getToken();
+    const url = `${API_URL}/issues/admin/${id}`;
+
+    try {
+        const response = await axios.delete<string>(url, 
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        return response.data;
+
+    } catch (err) {
+        console.error('Failed to update issue:', err);
+        return "Failed to delete";
+    }
 }
