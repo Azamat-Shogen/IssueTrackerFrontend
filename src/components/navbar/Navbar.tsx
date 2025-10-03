@@ -30,6 +30,13 @@ const Navbar: React.FC = () => {
                         Dashboard
                       </NavLink>
                     </li>
+                    {isLoggedIn && auth?.user?.role === "ADMIN" && (
+                       <li>
+                        <NavLink to="users" className={({ isActive }) => isActive ? "active-link" : undefined}>
+                            Users
+                        </NavLink>
+                       </li>
+                      )}
                    </>
                 ) : (
                    <>
