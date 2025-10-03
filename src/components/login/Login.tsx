@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { login } from '../../api/authApi'
 import { setToken } from '../../utils/auth'
 import { Link, useNavigate } from 'react-router-dom'
-import { IUser, useAuth } from '../../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 import { jwtDecode } from 'jwt-decode'
 import AuthCard from '../shared/AuthCard'
 

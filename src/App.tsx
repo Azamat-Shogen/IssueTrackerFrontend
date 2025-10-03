@@ -11,6 +11,7 @@ import { useAuth } from './context/AuthContext';
 import Footer from './components/footer/Footer';
 import IssueDeails from './components/issue-details/IssueDetails';
 import CreateIssue from './components/issue-details/CreateIssue';
+import Users from './components/users/Users';
 
 
 const  App: React.FC = () => {
@@ -40,6 +41,7 @@ const isLoggedIn:boolean = auth?.isAuth ?? false;
                 />
                 <Route path='/issues/:issueId' element={<IssueDeails />}/>
                 <Route path="/create" element={<CreateIssue />}/>
+                <Route path="/users" element={<Users />}/>
                 {/* Catch-all */}
                 <Route path='*' element={<h1 className="text-center mt-5">404 - Page Not Found</h1>} />
             </Routes>

@@ -18,11 +18,10 @@ export type IssueCreate = {
 export type UserRole = "USER" | "ADMIN"
 export type IssueStatus = "PENDING" | "RESOLVED"
 
-export interface User {
-  id: number;
-  username: string;
-  email: string;
-  role: UserRole
+export interface IUser {
+    id?: string;
+    username: string;
+    role: UserRole;
 }
 
 

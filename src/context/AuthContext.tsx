@@ -1,11 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 import { getUser, getToken, logout as clearAuth, clearToken, clearUser } from "../utils/auth";
+import { IUser } from "../types";
 
 
-export interface IUser {
-    username: string;
-    role: "USER" | "ADMIN";
-}
 
 interface IAuthContext {
     user: IUser | null;
